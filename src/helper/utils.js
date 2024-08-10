@@ -15,33 +15,32 @@ export const filterByKey = (data, filterKey) => {
   };
 };
 export const generalLabels = [
-  'Exit 1-8',
-  'Entry 1-8',
-  'Entry 9-16',
-  'ADC1',
-  'ADC2',
-  'ADC3',
-  'ADC4',
-  'LTHcurr',
-  'L20curr',
-  'LTH/L20curr',
+  "Exit 1-8",
+  "Entry 1-8",
+  "Entry 9-16",
+  "ADC1",
+  "ADC2",
+  "ADC3",
+  "ADC4",
+  "LTHcurr",
+  "L20curr",
+  "LTH/L20curr",
 ];
 export function formatCircuitStringFormat(inputString) {
-  console.log('input string ', inputString);
-  const parts = inputString.split('_');
+  const parts = inputString.split("_");
 
   const firstPart = parts[0];
 
-  const combinedParts = parts.slice(1).join('+');
+  const combinedParts = parts.slice(1).join("+");
 
   const resultString = `${firstPart} ${combinedParts}`;
 
   return resultString;
 }
 export function formatTimeStringFormat(key) {
-  const splitKey = key.split(' ');
+  const splitKey = key.split(" ");
   const suffix = splitKey.pop().toUpperCase();
-  const formattedKey = splitKey.join(' ') + ` ${suffix}., %`;
+  const formattedKey = splitKey.join(" ") + ` ${suffix}., %`;
   return formattedKey;
 }
 const mapData = (data) => {
@@ -49,7 +48,7 @@ const mapData = (data) => {
     label: `K${idx + 1}`,
     state: Array.from({
       length: 3,
-    }).map((_) => (v ? 'on' : 'off')),
+    }).map((_) => (v ? "on" : "off")),
   }));
 };
 export function preprocessCircuitData(data) {
@@ -66,9 +65,9 @@ export function preprocessCircuitData(data) {
   const sofBottomRow = sofData?.length > 5 ? sofData[5] : {};
   const pernikBottomRow = pernikData?.length > 5 ? pernikData[5] : {};
   return {
-    sofData: sofData?.filter((s) => s?.label !== 'K6'),
+    sofData: sofData?.filter((s) => s?.label !== "K6"),
     sofBottomRow,
     pernikBottomRow,
-    pernikData: pernikData?.filter((s) => s?.label !== 'K6'),
+    pernikData: pernikData?.filter((s) => s?.label !== "K6"),
   };
 }
