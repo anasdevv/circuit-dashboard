@@ -14,6 +14,9 @@ export default {
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
+      screens: {
+        small: { max: '1600px' }, // New screen size for less than 1500px
+      },
     },
   },
   plugins: [],

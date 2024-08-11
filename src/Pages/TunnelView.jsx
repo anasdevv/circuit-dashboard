@@ -1,16 +1,16 @@
-import React, { useCallback, useMemo } from "react";
-import { useQuery } from "react-query";
-import { TunnelViewPanel } from "../Components/TunnelViewPanel";
-import Loader from "../Components/Loader";
+import React, { useCallback, useMemo } from 'react';
+import { useQuery } from 'react-query';
+import { TunnelViewPanel } from '../Components/TunnelViewPanel';
+import Loader from '../Components/Loader';
 
 const TunnelView = () => {
   const { data: tunnelData, isLoading } = useQuery({
     queryFn: async () => {
       const response = await fetch(
-        "https://mhpp-api.vercel.app/get_tunel_data"
+        'https://mhpp-api.vercel.app/get_tunel_data'
       );
       if (!response.ok) {
-        throw new Error("Something went wrong");
+        throw new Error('Something went wrong');
       }
       const data = await response.json();
       return data;
@@ -40,16 +40,16 @@ const TunnelView = () => {
     [tunnelData?.lights?.sof_lights_row_0, tunnelData?.lights?.sof_lights_row_1]
   );
   return (
-    <div className="px-16 py-6 flex flex-col gap-y-3 h-screen ">
-      <h1 className="text-white font-semibold text-2xl">Tunnel View</h1>
+    <div className='px-16 py-6 flex flex-col gap-y-3 h-screen '>
+      <h1 className='text-white font-semibold text-2xl'>Tunnel View</h1>
       {isLoading ? (
         <Loader />
       ) : (
         <>
-          <div className="bg-[#1F2940]  rounded-lg min-w-[1320px] min-h-[325px]">
+          <div className='bg-[#1F2940]  rounded-lg '>
             <TunnelViewPanel
-              title="Pernik"
-              labels={["", "IIP  1", "BX 2", "BX 1"]}
+              title='Pernik'
+              labels={['', 'IIP  1', 'BX 2', 'BX 1']}
               kCircuits={tunnelData?.circuits?.pernik_k_circuits ?? []}
               rdCircuits={tunnelData?.circuits?.pernik_rd_circuits ?? []}
               sensors={{
@@ -62,11 +62,11 @@ const TunnelView = () => {
               )}
             />
           </div>
-          <div className="bg-[#1F2940] rounded-lg min-w-[1320px]  ">
+          <div className='bg-[#1F2940] rounded-lg min '>
             <TunnelViewPanel
               after={false}
-              title="Sofia"
-              labels={["BX 1", "BX 2", "IIP  1", ""]}
+              title='Sofia'
+              labels={['BX 1', 'BX 2', 'IIP  1', '']}
               kCircuits={tunnelData?.circuits?.sof_k_circuits ?? []}
               rdCircuits={tunnelData?.circuits?.sof_rd_circuits ?? []}
               sensors={{
